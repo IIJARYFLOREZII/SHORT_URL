@@ -1,27 +1,27 @@
 const apiBaseUrl = 'http://localhost:3000/api/urls';
 
-// Obtener todas las URLs y mostrarlas en la tabla de reportes
+// listar todas las URLs 
 async function fetchUrls() {
   const response = await fetch(apiBaseUrl);
   const urls = await response.json();
   renderUrls(urls, 'report-list');
 }
 
-// Obtener las URLs menos usadas
+// URLs menos usadas
 async function fetchLeastUsedUrls() {
   const response = await fetch(`${apiBaseUrl}/reports/least-used`);
   const urls = await response.json();
   renderUrls(urls, 'report-list');
 }
 
-// Obtener las URLs creadas en el último mes
+// URLs creadas en el último mes
 async function fetchLastMonthUrls() {
   const response = await fetch(`${apiBaseUrl}/reports/last-month`);
   const urls = await response.json();
   renderUrls(urls, 'report-list');
 }
 
-// Obtener las URLs más usadas
+//  URLs más usadas
 async function fetchTopUrls() {
   const response = await fetch(`${apiBaseUrl}/reports/top-urls`);
   const urls = await response.json();
@@ -74,7 +74,7 @@ document.getElementById('create-url-form').addEventListener('submit', async (e) 
   e.target.reset();
 });
 
-// Eliminar una URL
+// Eliminar URL
 async function deleteUrl(id) {
     const token = localStorage.getItem('authToken');
     console.log('Token encontrado en localStorage:', token);  // Verifica el token aquí
@@ -126,7 +126,7 @@ async function deleteUrl(id) {
   
   
   
-// Renderizar las URLs en la tabla correspondiente
+// mostrar las URLs en la tabla correspondiente
 function renderUrls(urls, tableId) {
     const urlList = document.getElementById(tableId);
     urlList.innerHTML = '';  // Limpiar la tabla antes de llenarla

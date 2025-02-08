@@ -9,7 +9,7 @@ const db = new sqlite3.Database('./database/shorturl.db', (err) => {
   }
 });
 
-// Crear la tabla si no existe
+// tabla
 db.serialize(() => {
   db.run(`
     CREATE TABLE IF NOT EXISTS urls (

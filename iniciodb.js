@@ -1,11 +1,11 @@
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./database/shorturl.db');
 
-// Inicializar y poblar la base de datos
-db.serialize(() => {
-  console.log('Inicializando y poblando la base de datos...');
 
-  // Insertar datos de ejemplo
+db.serialize(() => {
+  console.log('poblando la base de datos...');
+
+
   const insert = db.prepare(`
     INSERT INTO urls (originalUrl, shortUrl, createdAt, useCount, maxUses)
     VALUES (?, ?, ?, ?, ?)
@@ -21,7 +21,7 @@ db.serialize(() => {
   sampleData.forEach(row => insert.run(...row));
 
   insert.finalize();
-  console.log('Datos de ejemplo insertados correctamente.');
+  console.log('Datos de ejemplo insertados correctamente n.n');
   
   db.close();
 });

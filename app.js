@@ -11,7 +11,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-// Usar archivos estáticos desde la carpeta 'shorturl-client' para poder visualizar la interfaz
+// crear 'shorturl-client' para poder visualizar la interfaz
 app.use(express.static('shorturl-client'));
 
 // Rutas de la API

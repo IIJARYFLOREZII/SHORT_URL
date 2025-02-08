@@ -3,14 +3,14 @@ const { nanoid } = require('nanoid');  // nanoid para generar identificadores ú
 
 // Crear y guardar una URL corta
 const urlCorta = (req, res) => {
-  const { originalUrl } = req.body;
+  const { originalUrl, maxUses = 5 } = req.body;
 
   // Validación: Verificar si se envió la URL
   if (!originalUrl) {
     return res.status(400).json({ error: 'La URL original es obligatoria.' });
   }
 
-  // Generar un identificador corto para la URL original
+  
   const shortUrl = nanoid(6);
 
   console.log('Agregando en la base de datos:');
@@ -19,25 +19,23 @@ const urlCorta = (req, res) => {
 
   // Insertar en la base de datos
   db.run(
-    `INSERT INTO urls (originalUrl, shortUrl) VALUES (?, ?)`,
-    [originalUrl, shortUrl],
+    `INSERT INTO urls (originalUrl, shortUrl, maxUses) VALUES (?, ?, ?)`,
+    [originalUrl, shortUrl, maxUses],
     function (err) {
       if (err) {
-        console.error('Error en la base de datos:', err.message);
-        return res.status(500).json({
-          error: 'Error al guardar la URL en la base de datos.',
-          details: err.message
-        });
+        return res.status(500).json({ error: 'Error al guardar la URL en la base de datos.' });
       }
-
-      console.log('URL guardada con éxito. ID:', this.lastID);
-      res.status(201).json({
-        id: this.lastID,
-        originalUrl,
-        shortUrl
+  
+      // para obtener el campo de fecha de creacion
+      db.get(`SELECT * FROM urls WHERE id = ?`, [this.lastID], (err, row) => {
+        if (err) {
+          return res.status(500).json({ error: 'Error al recuperar la URL creada.' });
+        }
+        res.status(201).json(row);
       });
     }
   );
+  
 };
 
 // Redirigir a la URL original
@@ -78,7 +76,7 @@ const listar = (req, res) => {
     res.json(rows);
   });
 }
-  // Función para eliminar una URL de la base de datos
+  // eliminar una URL 
   const eliminarUrl = (req, res) => {
     const { id } = req.params;
   
@@ -95,7 +93,8 @@ const listar = (req, res) => {
       res.status(200).json({ message: 'URL eliminada con éxito.' });
     });
   };
-  
+ 
+  // URLs mas usadas, ordenadas de mayor a menor  
 const urlsMasUsadas = (req, res) => {
   db.all(`SELECT * FROM urls ORDER BY useCount DESC`, (err, rows) => {
     if (err) {
@@ -106,7 +105,7 @@ const urlsMasUsadas = (req, res) => {
   });
 };
 
-// Obtener las URLs menos usadas, ordenadas de menor a mayor por useCount
+// URLs menos usadas, ordenadas de menor a mayor 
 const urlsMenosUsadas = (req, res) => {
   db.all(`SELECT * FROM urls ORDER BY useCount ASC`, (err, rows) => {
     if (err) {
@@ -118,13 +117,13 @@ const urlsMenosUsadas = (req, res) => {
 };
 
 
-// Obtener las URLs más usadas en un rango de fechas
+// URLs más usadas en un rango de fechas
 const ReportePorFechas = (req, res) => {
   const { startDate, endDate } = req.query;
 
   // Validar que las fechas sean enviadas
   if (!startDate || !endDate) {
-    return res.status(400).json({ error: "Debes proporcionar startDate y endDate en formato YYYY-MM-DD" });
+    return res.status(400).json({ error: "Debes proporcionar fecha inicio y fecha fin " });
   }
 
   // Consulta SQL para filtrar ignorando la hora
@@ -143,7 +142,7 @@ db.all(query, [startDate, endDate], (err, rows) => {
 });
 };
 
-// Obtener las URLs creadas en el último mes
+// URLs creadas en el último mes
 const urlsUltimoMes = (req, res) => {
   const query = `
     SELECT * FROM urls 
