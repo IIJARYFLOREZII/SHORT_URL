@@ -51,7 +51,7 @@ El proyecto incluye pruebas unitarias con Jest.
 
 ## Ejecutar pruebas:
     ```bash
-     npm test
+    npm test
 
 
 ## Cobertura de pruebas:
