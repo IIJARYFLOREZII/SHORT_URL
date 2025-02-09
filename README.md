@@ -28,12 +28,15 @@ Una API REST para acortar URLs, con funcionalidades avanzadas como estadísticas
    cd SHORT_URL
    
 3. Instala las dependencias:
+    ```bash
    npm install
    
 4. Inicializa la base de datos:
-   node initDb.js
+    ```bash
+   node iniciodb.js
    
 5. Ejecuta el servidor:
+    ```bash
    node app.js
 
 6. Abre en tu navegador: http://localhost:3000
@@ -47,6 +50,7 @@ URL: http://localhost:3000/api-docs
 El proyecto incluye pruebas unitarias con Jest.
 
 ## Ejecutar pruebas:
+ ```bash
    npm test
    
 ## Cobertura de pruebas:
