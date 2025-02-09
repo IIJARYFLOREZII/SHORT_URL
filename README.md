@@ -50,8 +50,8 @@ URL: http://localhost:3000/api-docs
 El proyecto incluye pruebas unitarias con Jest.
 
 ## Ejecutar pruebas:
-
-    ```bash npm test
+    ```bash
+     npm test
 
 
 ## Cobertura de pruebas:
