@@ -117,7 +117,7 @@ const urlsMenosUsadas = (req, res) => {
 };
 
 
-// URLs más usadas en un rango de fechas
+// URLs utilizadas en un rango de fechas
 const ReportePorFechas = (req, res) => {
   const { startDate, endDate } = req.query;
 

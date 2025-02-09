@@ -14,8 +14,8 @@ db.serialize(() => {
   const sampleData = [
     ['https://example.com', 'abc123', '2025-02-01 10:00:00', 1, 5],
     ['https://google.com', 'xyz789', '2025-02-02 11:30:00', 2, 10],
-    ['https://github.com', 'gh1234', '2025-02-03 14:15:00', 5, 15],
-    ['https://openai.com', 'openai1', '2025-02-04 16:45:00', 3, 20]
+    ['https://github.com', 'gh1234', '2025-01-03 14:15:00', 5, 15],
+    ['https://openai.com', 'openai1', '2025-01-04 16:45:00', 3, 20]
   ];
 
   sampleData.forEach(row => insert.run(...row));
