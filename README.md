@@ -23,7 +23,7 @@ Una API REST para acortar URLs, con funcionalidades avanzadas como estadísticas
 1. Clona el repositorio:  
    ```bash  
    git clone https://github.com/IIJARYFLOREZII/SHORT_URL.git  
-   ```  
+    
 
 2. Entra en la carpeta del proyecto:  
    ```bash  
@@ -45,11 +45,11 @@ Una API REST para acortar URLs, con funcionalidades avanzadas como estadísticas
    node app.js  
    ```  
 
-6. Abre en tu navegador: `http://localhost:3000`  
+6. Abre en tu navegador: http://localhost:3000 
 
 ## 🔗 Documentación de Endpoints  
 La documentación completa de la API está disponible en la interfaz Swagger:  
-**URL:** `http://localhost:3000/api-docs`  
+**URL:** http://localhost:3000/api-docs  
 
 ## 🧪 Pruebas  
 El proyecto incluye pruebas unitarias con **Jest**.  
@@ -66,6 +66,6 @@ npm test
 
 ## 🖥️ Interfaz Frontend  
 El proyecto incluye una interfaz frontend desarrollada con **TailwindCSS**, disponible en:  
-**`http://localhost:3000/shorturl.html`**  
+http://localhost:3000/shorturl.html  
 
 
