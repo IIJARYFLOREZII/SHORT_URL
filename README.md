@@ -58,11 +58,16 @@ El proyecto incluye pruebas unitarias con **Jest**.
 ```bash  
 npm test  
 ```  
-
 ### **Cobertura de pruebas:**  
 - Creación de URL (`POST /api/urls`)  
 - Redirección (`GET /:shortUrl`)  
-- Reportes (`GET /api/urls/reports`)  
+- Reportes (`GET /api/urls/reports`)
+
+### **Ejemplos de pruebas:**
+
+**Creación de URL:** Verifica que se pueda crear una URL corta y se devuelvan los datos esperados.
+**Redirección de URL:** Comprueba que la redirección a la URL original funcione correctamente.
+**Reportes:** Evalúa que el reporte de las URLs más usadas devuelva una lista válida.
 
 ## 🖥️ Interfaz Frontend  
 El proyecto incluye una interfaz frontend desarrollada con **TailwindCSS**, disponible en:  
